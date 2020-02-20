@@ -22,4 +22,5 @@ workflows:
             - run:
                 name: Test the deployment
                 command: |
-                  TARGET_GROUP_ARN=$(aws ecs describe-services --cluster ${AWS_RESOURCE_NAME_PREFIX} --services ${AWS_RESOURCE_NAME_PREFIX}-service
+                  TARGET_GROUP_ARN=$(aws ecs describe-services --cluster ${AWS_RESOURCE_NAME_PREFIX}-cluster --services ${AWS_RESOURCE_NAME_PREFIX}-service)
+                  echo $TARGET_GROUP_ARN
