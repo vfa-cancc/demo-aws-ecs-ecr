@@ -10,10 +10,6 @@ workflows:
           repo: "${AWS_RESOURCE_NAME_PREFIX}"
           region: ${AWS_DEFAULT_REGION}
           tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only:
-                - master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build_and_push_image
@@ -28,8 +24,3 @@ workflows:
                 command: |
                   TARGET_GROUP_ARN=$(aws ecs describe-services --cluster ${AWS_RESOURCE_NAME_PREFIX}-cluster --services ${AWS_RESOURCE_NAME_PREFIX}-service)
                   echo $TARGET_GROUP_ARN
-          filters:
-            branches:
-              only:
-                - master
-                
